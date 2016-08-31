@@ -139,7 +139,7 @@
       <div class="col-sm-2 text-center " style="margin-top: 122.5px; color: #3E576F:">
         <span class="count_top">Total Live Streams</span>
         <div class="count" id="live-streams">0</div>
-        <span class="count_bottom" ><b class="green" id="change-from-last-week-streams">0</b><b class="green" id="percentage">%</b> From last Yesterday</span>
+        <span class="count_bottom" ><b class="green" id="change-from-last-week-streams">0</b><b class="green" id="percentage">%</b> From Yesterday</span>
       </div>
     </div><!--end of live container-->
     <div class="container-fluid" id='top-videos-container'>
@@ -339,5 +339,35 @@
     <script type="text/javascript" src="js/topReferers.js"></script>
     <script type="text/javascript" src="js/topSearches.js"></script>
     <script type="text/javascript" src="js/topStreams.js"></script>
+    <script type="text/javascript">
+      function sendEvents() {
+        var query = {
+          'event': 'View Video Page',
+          'properties': {
+            'token': '08439398ee2ac816d99005792a8aeadf',
+            'Experiment Group': 'Group A',
+            'Movie Title': 'Knock Knock'
+          }
+        }
+        var stringVersion = JSON.stringify(query)
+        var encoded = window.btoa(stringVersion)
+        $.ajax({
+          url: "https://api.mixpanel.com/track/?data="+encoded
+        })
+        var query2 = {
+          'event': 'Video Start',
+          'properties': {
+            'token': '08439398ee2ac816d99005792a8aeadf',
+            'Movie Title': 'Knock Knock'
+          }
+        }
+        var stringVersion = JSON.stringify(query2)
+        var encoded = window.btoa(stringVersion)
+        $.ajax({
+          url: "https://api.mixpanel.com/track/?data="+encoded
+        })
+      }
+      setInterval(sendEvents, 1000)
+    </script>
   </body>
 </html>
