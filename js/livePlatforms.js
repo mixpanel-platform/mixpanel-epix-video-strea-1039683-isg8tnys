@@ -50,7 +50,7 @@ $(document)
                                 h = Math.floor((Math.random() * (390-380)+1) + 380);
                                 i = Math.floor((Math.random() * (380-370)+1) + 370);
                                 liveStreamsLastWeek = e+f+g+h
-                                $('#change-from-last-week-streams').text(((liveStreams - liveStreamsLastWeek)/liveStreamsLastWeek).toFixed(2)*100)
+                                $('#change-from-last-week-streams').text(((liveStreams - liveStreamsLastWeek)/liveStreamsLastWeek).toFixed(2))*100
                                 $("#live-users").text(addCommas(liveStreams+38))
                                 if (totalVideos < 1000) {
                                   totalVideos += liveStreams
