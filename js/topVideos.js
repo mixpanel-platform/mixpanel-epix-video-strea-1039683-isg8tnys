@@ -15,8 +15,13 @@ MP.api.segment('View Video Page', 'Movie Title', params).done(function(results){
   var dataValues = []
   _.each(data, function(values, key){
     names.push(key)
-    dataValues.push(values[today])
+    dataValues.push(parseInt(values[today]))
+    console.log( dataValues);
   })
+  dataValues.sort(function(a,b){
+    return b - a
+  })
+  console.log("top movie pages", dataValues);
 
   $('#top-movie-pages').highcharts({
       chart: {

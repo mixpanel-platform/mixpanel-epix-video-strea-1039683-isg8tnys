@@ -8,16 +8,20 @@ var params = {
 
 MP.api.segment('Search', 'Search Term', params).done(function(results){
 
+  console.log('movie results', results.values());
   var data = results.values()
 
   var today = moment().format('YYYY-MM-DD')
+
   var names =[]
   var dataValues = []
   _.each(data, function(values, key){
     names.push(key)
     dataValues.push(values[today])
   })
-
+  dataValues.sort(function(a,b){
+    return b - a
+  })
   $('#top-searches').highcharts({
       chart: {
           type: 'bar'

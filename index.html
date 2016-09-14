@@ -341,12 +341,14 @@
     <script type="text/javascript" src="js/topStreams.js"></script>
     <script type="text/javascript">
       function sendEvents() {
+        var movie = ['Knock Knock','Sicario','Interstellar','MockingJay', 'SpongeBob Movie']
+        var experimentG = ['Group A','Group B']
         var query = {
           'event': 'View Video Page',
           'properties': {
             'token': '08439398ee2ac816d99005792a8aeadf',
-            'Experiment Group': 'Group A',
-            'Movie Title': 'Knock Knock'
+            'Experiment Group': experimentG[Math.floor((Math.random() * (0-1)+1) + 1)],
+            'Movie Title':  movie[Math.floor((Math.random() * (0-4)+1) + 4)]
           }
         }
         var stringVersion = JSON.stringify(query)
@@ -358,10 +360,27 @@
           'event': 'Video Start',
           'properties': {
             'token': '08439398ee2ac816d99005792a8aeadf',
-            'Movie Title': 'Knock Knock'
+            'Movie Title': movie[Math.floor((Math.random() * (0-4)+1) + 4)]
           }
         }
-        var stringVersion = JSON.stringify(query2)
+        var query3 = {
+          'event': 'Video End',
+          'properties': {
+            'token': '08439398ee2ac816d99005792a8aeadf',
+            'Movie Title': movie[Math.floor((Math.random() * (0-4)+1) + 4)]
+          }
+        }
+        var stringVersion3 = JSON.stringify(query3)
+        var encoded3 = window.btoa(stringVersion3)
+        $.ajax({
+          url: "https://api.mixpanel.com/track/?data="+encoded3
+        })
+        var stringVersion2 = JSON.stringify(query3)
+        var encoded2 = window.btoa(stringVersion2)
+        $.ajax({
+          url: "https://api.mixpanel.com/track/?data="+encoded2
+        })
+        var stringVersion = JSON.stringify(query)
         var encoded = window.btoa(stringVersion)
         $.ajax({
           url: "https://api.mixpanel.com/track/?data="+encoded

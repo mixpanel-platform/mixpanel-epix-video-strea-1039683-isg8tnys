@@ -15,6 +15,9 @@ MP.api.segment('Open App', 'utm_source', params).done(function(results){
     names.push(key)
     dataValues.push(values[today])
   })
+  dataValues.sort(function(a,b){
+    return b - a
+  })
 
   $('#top-referers').highcharts({
       chart: {
